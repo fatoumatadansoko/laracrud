@@ -66,4 +66,10 @@ class CrudControllerr extends Controller
         $article->update();
         return redirect('/article')->with('status', 'L\'article a bien était modifié avec succes.');
     }
+    public function delete_article($id){
+        $article= Article::find($id);
+        $article->delete();
+        return redirect('/article')->with('status', 'L\'article a bien était supprimé avec succes.');
+    
+    }
 }

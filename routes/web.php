@@ -9,3 +9,4 @@ route::post('/ajouter/traitement', [CrudControllerr::class,'ajouter_article_trai
 Route::get('/article/{id}', [CrudControllerr::class, 'voir_article'])->name('voir_article');
 route::get('/update-article/{id}', [CrudControllerr::class,'update_article']);
 route::post('/update/traitement', [CrudControllerr::class,'update_article_traitement']);
+route::get('/delete-article/{id}', [CrudControllerr::class,'delete_article']);
