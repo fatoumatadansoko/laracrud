@@ -9,6 +9,8 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Liste des Articles</h1>
+        <a href="/ajouter" class="btn btn-primary">ajouter un article</a>   
+
         <div class="row">
             @foreach($articles as $article)
                 <div class="col-md-4 mb-4">
