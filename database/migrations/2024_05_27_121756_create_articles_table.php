@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->text('description');
-            $table->datetime('date_creation');
+            $table->date('date_creation');
             $table->boolean('a_la_une');
             $table->text('image');
           

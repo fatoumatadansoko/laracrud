@@ -13,34 +13,57 @@ class CrudControllerr extends Controller
         return view('articles.liste', compact(('articles')));
     }
     public function ajouter_article()
-{
-    return view('articles.ajouter');
-}
-public function ajouter_article_traitement(request $request)
-{
-$request->validate([
-    'nom' =>'required',
-    'description' =>'required',
-    'date_creation' =>'required',
-    'a_la_une' =>'required',
-    'image' =>'required',
+    {
+        return view('articles.ajouter');
+    }
+    public function ajouter_article_traitement(request $request)
+    {
+        $request->validate([
+            'nom' => 'required',
+            'description' => 'required',
+            'date_creation' => 'required',
+            'a_la_une' => 'required',
+            'image' => 'required',
 
-]);
-$article= new Article();
-$article->nom = $request->nom;
-$article->description = $request->description;
-$article->date_creation = $request->date_creation;
-$article->a_la_une = $request->a_la_une;
-$article->image = $request->image;
-$article->save();
+        ]);
+        $article = new Article();
+        $article->nom = $request->nom;
+        $article->description = $request->description;
+        $article->date_creation = $request->date_creation;
+        $article->a_la_une = $request->a_la_une;
+        $article->image = $request->image;
+        $article->save();
 
-return redirect('/ajouter')->with('status', 'L\'article a bien était ajouté avec succes.');
+        return redirect('/ajouter')->with('status', 'L\'article a bien était ajouté avec succes.');
+    }
+    public function voir_article($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('articles.voir', compact('article'));
+    }
+    public function update_article($id)
+    {
+        $articles = Article::find($id);
+        return view('articles.update', compact('articles'));
+    }
+    public function update_article_traitement(Request $request)
+    {
 
-}
-public function voir_article($id)
-{
-    $article = Article::findOrFail($id);
-    return view('articles.voir', compact('article'));
-}
+        $request->validate([
+            'nom' => 'required',
+            'description' => 'required',
+            'date_creation' => 'required',
+            'a_la_une' => 'required',
+            'image' => 'required',
 
+        ]);
+        $article =  Article::find($request->id);
+        $article->nom = $request->nom;
+        $article->description = $request->description;
+        $article->date_creation = $request->date_creation;
+        $article->a_la_une = $request->a_la_une;
+        $article->image = $request->image;
+        $article->update();
+        return redirect('/article')->with('status', 'L\'article a bien était modifié avec succes.');
+    }
 }
