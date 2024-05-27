@@ -12,4 +12,35 @@ class CrudControllerr extends Controller
         $articles = Article::all();
         return view('articles.liste', compact(('articles')));
     }
+    public function ajouter_article()
+{
+    return view('articles.ajouter');
+}
+public function ajouter_article_traitement(request $request)
+{
+$request->validate([
+    'nom' =>'required',
+    'description' =>'required',
+    'date_creation' =>'required',
+    'a_la_une' =>'required',
+    'image' =>'required',
+
+]);
+$article= new Article();
+$article->nom = $request->nom;
+$article->description = $request->description;
+$article->date_creation = $request->date_creation;
+$article->a_la_une = $request->a_la_une;
+$article->image = $request->image;
+$article->save();
+
+return redirect('/ajouter')->with('status', 'L\'article a bien était ajouté avec succes.');
+
+}
+public function voir_article($id)
+{
+    $article = Article::findOrFail($id);
+    return view('articles.voir', compact('article'));
+}
+
 }
