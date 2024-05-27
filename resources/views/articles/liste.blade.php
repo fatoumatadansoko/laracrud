@@ -23,8 +23,8 @@
                             <p class="card-text"><small class="text-muted">À la une: {{ $article->a_la_une ? 'Oui' : 'Non' }}</small></p>
                             <a href="{{ route('voir_article', $article->id) }}" class="btn btn-primary">Voir plus</a>
                             <div>
-                                <a href="{{ url('/update-article/'.$article->id) }}" class="btn btn-info">Update</a>
-                                <a href="{{ url('/delete-article/'.$article->id) }}"class= "btn btn-danger">Delete</a>
+                                <a href="{{ url('/update-article/'.$article->id) }}" class="btn btn-info">Modifier</a>
+                                <a href="{{ url('/delete-article/'.$article->id) }}"class= "btn btn-danger">Supprimer</a>
                         
                             </div>
                         </div>
